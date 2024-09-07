@@ -1,50 +1,26 @@
-# React + TypeScript + Vite
+# Task 01 de Redux - CRUD com Ranking
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Crud de produtos feito para o módulo de redux do programa VemSer14 da DBC
 
-Currently, two official plugins are available:
+## Tecnologias utilizadas
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Redux - Para gerenciamento de estados.
+- SASS - Para estilização.
+- React Router DOM - Para mapeamento de rotas.
+- React Hook Form - Para uso otimizado de formulários.
 
-## Expanding the ESLint configuration
+## Telas
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+#### Tela Principal
 
-- Configure the top-level `parserOptions` property like this:
+ ![Tela Principal](ReadMeImages/tela-principal.png)
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+ 
+#### Tela de cadastro
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+ ![Tela de cadastro](ReadMeImages/form-cadastro.png)
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+ 
+#### Tela de edição
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+ ![Tela de edição](ReadMeImages/form-edicao.png)
