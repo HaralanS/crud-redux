@@ -17,7 +17,7 @@ interface IFormData {
 }
 
 export default function AddProductModal({setModal}: ModalProps) {
-    const {register, handleSubmit} = useForm<IFormData>()
+    const {register, handleSubmit, formState: {errors}} = useForm<IFormData>()
     const dispatch: AppDispatch = useDispatch()
     // const products = useSelector((state: RootState) => state.products.products)
 
@@ -38,11 +38,16 @@ export default function AddProductModal({setModal}: ModalProps) {
         <div className={styles.backgroundDiv} onClick={() => setModal(false)}>
         </div>
         <form onSubmit={handleSubmit(onSubmit)} className={styles.formStyle}>
-            <input type="text" required {...register('name')} placeholder="Nome" />
-            <input type="text" required {...register('imgUrl')} placeholder="Url da imagem" />
-            <input type="text" required {...register('quantity')} placeholder="Quantidade" />
-            <input type="text" required {...register('price')} placeholder="Preco" />
-            <input type="text" required {...register('likes')} placeholder="Likes" />
+            <input type="text" {...register('name', {required: "Nome é obrigatório"})} placeholder="Nome" />
+            {errors.name && <p>{errors.name?.message}</p>}
+            <input type="text" {...register('imgUrl', {required: "Url é obrigatório"})} placeholder="Url da imagem" />
+            {errors.imgUrl && <p>{errors.imgUrl?.message}</p>}
+            <input type="text" {...register('quantity', {required: "Quantidade é obrigatório"})} placeholder="Quantidade" />
+            {errors.quantity && <p>{errors.quantity?.message}</p>}
+            <input type="text" {...register('price', {required: "Preço é obrigatório"})} placeholder="Preco" />
+            {errors.price && <p>{errors.price?.message}</p>}
+            <input type="text" {...register('likes', {required: "Likes é obrigatório"})} placeholder="Likes" />
+            {errors.likes && <p>{errors.likes?.message}</p>}
             <button type="submit">Cadastrar</button>
         </form>
         </>

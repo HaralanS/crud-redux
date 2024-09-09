@@ -11,7 +11,7 @@ interface ModalProps {
 }
 
 export default function EditProductModal({setModal, product}: ModalProps) {
-    const {register, handleSubmit} = useForm<IProduct>()
+    const {register, handleSubmit, formState: {errors}} = useForm<IProduct>()
     const dispatch: AppDispatch = useDispatch()
     // const products = useSelector((state: RootState) => state.products.products)
 
@@ -33,11 +33,16 @@ export default function EditProductModal({setModal, product}: ModalProps) {
         <div className={styles.backgroundDiv} onClick={() => setModal(false)}>
         </div>
         <form onSubmit={handleSubmit(onSubmit)} className={styles.formStyle}>
-            <input type="text" required {...register('name')} defaultValue={product.name} placeholder="Nome" />
-            <input type="text" required {...register('imgUrl')} defaultValue={product.imgUrl} placeholder="Url da imagem" />
-            <input type="text" required {...register('quantity')} defaultValue={product.quantity} placeholder="Quantidade" />
-            <input type="text" required {...register('price')} defaultValue={product.price} placeholder="Preco" />
-            <input type="text" required {...register('likes')} defaultValue={product.likes} placeholder="Likes" />
+        <input type="text" {...register('name', {required: "Nome é obrigatório"})} defaultValue={product.name} />
+            {errors.name && <p>{errors.name?.message}</p>}
+            <input type="text" {...register('imgUrl', {required: "Url é obrigatório"})} defaultValue={product.imgUrl} />
+            {errors.imgUrl && <p>{errors.imgUrl?.message}</p>}
+            <input type="text" {...register('quantity', {required: "Quantidade é obrigatório"})} defaultValue={product.quantity} />
+            {errors.quantity && <p>{errors.quantity?.message}</p>}
+            <input type="text" {...register('price', {required: "Preço é obrigatório"})} defaultValue={product.price} />
+            {errors.price && <p>{errors.price?.message}</p>}
+            <input type="text" {...register('likes', {required: "Likes é obrigatório"})} defaultValue={product.likes} />
+            {errors.likes && <p>{errors.likes?.message}</p>}
             <button type="submit">Salvar</button>
         </form>
         </>
